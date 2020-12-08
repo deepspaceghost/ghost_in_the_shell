@@ -140,6 +140,23 @@ def find_file(filename, search_path):
             logger.info("{0} could not be found.".format(filename))
 
 
+def open_file(filename):
+    """
+    """
+
+    print("One moment...")
+    logger.info("One moment...")
+    if os.path.exists(filename):
+        print("Opening file...")
+        logger.info("Opening file...")
+        f = open(filename, "r")
+        print(f.read())
+        logger.info(f.read())
+    else:
+        print("{0} does not exist.".format(filename))
+        logger.info("{0} does not exist.".format(filename))
+
+
 def rename_dir(olddirname, newdirname):
     """
     """
@@ -227,6 +244,11 @@ def main():
                         nargs=2,
                         help="Usage: ./puppet_master.py --find_file [filename] [search_path]",
                         dest="find_file_args")
+    parser.add_argument("--open_file",
+                        action="store",
+                        nargs=1,
+                        help="Usage: ./puppet_master.py --open_file [filename]",
+                        dest="open_file_args")
     parser.add_argument("--rename_dir",
                         action="store",
                         nargs=2,
@@ -266,6 +288,10 @@ def main():
         filename = args.find_files_args[0]
         search_path = args.find_files_args[1]
         find_file(filename, search_path)
+
+    elif args.open_file_args:
+        filename = args.open_file_args[0]
+        open_file(filename)
 
     elif args.rename_dir_args:
         olddirname = args.rename_dir_args[0]
