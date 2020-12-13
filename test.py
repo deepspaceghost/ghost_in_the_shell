@@ -1,32 +1,21 @@
 #!/usr/bin/python3
 
 import unittest
+import os
+from puppet_master import puppet_master
 
-from fractions import Fraction
-from my_sum import sum
 
-
-class TestSum(unittest.TestCase):
+class TestPuppetMaster(unittest.TestCase):
     """
     """
 
-    def test_list_int(self):
+    def test_create_file(self):
         """
-        Test that it can sum a list of intergers
-        """
-
-        data = [1, 2, 3]
-        result = sum(data)
-        self.assertEqual(result, 6)
-
-    def test_list_fraction(self):
-        """
-        Test that it can sum a list of fractions
         """
 
-        data = [Fraction(1, 4), Fraction(1, 4), Fraction(2, 5)]
-        result = sum(data)
-        self.assertEqual(result, 1)
+        puppet_master.create_file("text.txt", "test text")
+        self.assertTrue(os.path.exists("text.txt"))
+        os.remove("text.txt")
 
 
 if __name__ == "__main__":
