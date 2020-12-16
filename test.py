@@ -27,6 +27,15 @@ class TestPuppetMaster(unittest.TestCase):
         self.assertTrue(os.path.exists("test"))
         os.rmdir("test")
 
+    def test_delete_dir(self):
+        """
+        """
+
+        print("Testing function...")
+        puppet_master.create_dir("test")
+        puppet_master.delete_dir("test")
+        self.assertFalse(os.path.exists("test"))
+
     def test_delete_file(self):
         """
         """
@@ -35,6 +44,16 @@ class TestPuppetMaster(unittest.TestCase):
         puppet_master.create_file("test.txt", "test text")
         puppet_master.delete_file("test.txt")
         self.assertFalse(os.path.exists("test.txt"))
+
+    def test_rename_dir(self):
+        """
+        """
+
+        print("Testing function...")
+        puppet_master.create_dir("test")
+        puppet_master.rename_dir("test", "test2")
+        self.assertTrue(os.path.exists("test2"))
+        os.rmdir("test2")
 
     def test_rename_file(self):
         """
